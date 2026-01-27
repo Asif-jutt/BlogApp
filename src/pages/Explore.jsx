@@ -74,8 +74,8 @@ const Explore = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="bg-linear-to-br from-indigo-600 via-purple-600 to-pink-500 py-16 px-6">
-        <div className="max-w-6xl mx-auto text-center">
+      <section className="bg-linear-to-br from-indigo-600 via-purple-600 to-pink-500 py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
             Explore DEV Community
           </h1>
@@ -108,8 +108,8 @@ const Explore = () => {
 
       {/* Tags Section */}
       <section className="py-4 bg-white border-b shadow-sm sticky top-16 z-30">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-center gap-3 overflow-x-auto pb-2 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
             <button
               onClick={() => clearSearch()}
               className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
@@ -138,10 +138,10 @@ const Explore = () => {
       </section>
 
       {/* Articles Grid */}
-      <section className="py-12 px-6">
-        <div className="max-w-6xl mx-auto">
+      <section className="py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
           {selectedTag && (
-            <div className="mb-6 flex items-center gap-2 flex-wrap">
+            <div className="mb-6 flex items-center justify-center gap-2 flex-wrap">
               <span className="text-gray-500">Showing results for:</span>
               <span className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full font-medium">
                 #{selectedTag}
@@ -173,80 +173,85 @@ const Explore = () => {
             </div>
           ) : (
             <>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 justify-items-center">
                 {articles.map((article) => (
                   <Link
                     key={article.id}
                     to={`/devto/${article.id}`}
-                    className="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col"
+                    className="group bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col border border-gray-100 w-full max-w-sm"
                   >
                     {/* Cover Image */}
-                    <div className="relative h-48 bg-linear-to-br from-indigo-100 to-purple-100 overflow-hidden">
+                    <div className="relative h-52 bg-linear-to-br from-indigo-100 to-purple-100 overflow-hidden">
                       {article.cover_image || article.social_image ? (
                         <img
                           src={article.cover_image || article.social_image}
                           alt={article.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         />
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center">
-                          <svg className="w-16 h-16 text-indigo-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div className="w-full h-full flex items-center justify-center bg-linear-to-br from-indigo-500 to-purple-600">
+                          <svg className="w-16 h-16 text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
                           </svg>
                         </div>
                       )}
+                      {/* Overlay gradient */}
+                      <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       {/* DEV.to Badge */}
-                      <div className="absolute top-3 left-3">
-                        <span className="px-2 py-1 bg-black text-white text-xs font-bold rounded">
+                      <div className="absolute top-4 left-4">
+                        <span className="px-3 py-1.5 bg-black text-white text-xs font-bold rounded-lg shadow-lg">
                           DEV
+                        </span>
+                      </div>
+                      {/* Reactions Badge */}
+                      <div className="absolute top-4 right-4">
+                        <span className="px-3 py-1.5 bg-white/90 backdrop-blur-sm text-gray-700 text-xs font-semibold rounded-lg shadow-lg flex items-center gap-1">
+                          <svg className="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                          </svg>
+                          {article.public_reactions_count || 0}
                         </span>
                       </div>
                     </div>
 
                     {/* Content */}
-                    <div className="p-5 flex flex-col flex-1">
+                    <div className="p-6 flex flex-col flex-1">
                       {/* Tags */}
                       <div className="flex flex-wrap gap-2 mb-3">
                         {article.tag_list?.slice(0, 3).map((tag) => (
                           <span
                             key={tag}
-                            className="px-2 py-1 bg-gray-100 text-gray-600 rounded-full text-xs"
+                            className="px-2.5 py-1 bg-indigo-50 text-indigo-600 rounded-full text-xs font-medium"
                           >
                             #{tag}
                           </span>
                         ))}
                       </div>
 
-                      <h3 className="font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-indigo-600 transition-colors">
+                      <h3 className="font-bold text-lg text-gray-900 mb-3 line-clamp-2 group-hover:text-indigo-600 transition-colors leading-snug">
                         {article.title}
                       </h3>
 
-                      <p className="text-gray-500 text-sm line-clamp-2 mb-4 flex-1">
+                      <p className="text-gray-500 text-sm line-clamp-2 mb-4 flex-1 leading-relaxed">
                         {article.description}
                       </p>
 
                       {/* Author & Stats */}
                       <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-3">
                           <img
                             src={article.user?.profile_image || `https://ui-avatars.com/api/?name=${article.user?.name}`}
                             alt={article.user?.name}
-                            className="w-8 h-8 rounded-full"
+                            className="w-10 h-10 rounded-full ring-2 ring-indigo-100"
                           />
                           <div>
-                            <p className="text-sm font-medium text-gray-800">{article.user?.name}</p>
-                            <p className="text-xs text-gray-400">{formatDate(article.published_at)}</p>
+                            <p className="text-sm font-semibold text-gray-900">{article.user?.name}</p>
+                            <p className="text-xs text-gray-500">{formatDate(article.published_at)}</p>
                           </div>
                         </div>
 
-                        <div className="flex items-center gap-3 text-gray-400 text-sm">
-                          <span className="flex items-center gap-1">
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                            </svg>
-                            {article.public_reactions_count || 0}
-                          </span>
-                          <span className="flex items-center gap-1">
+                        <div className="flex items-center gap-2 text-gray-400 text-sm">
+                          <span className="flex items-center gap-1 px-2 py-1 bg-gray-50 rounded-lg">
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                             </svg>
@@ -261,11 +266,11 @@ const Explore = () => {
 
               {/* Load More */}
               {pagination.hasMore && (
-                <div className="text-center mt-10">
+                <div className="text-center mt-12">
                   <button
                     onClick={handleLoadMore}
                     disabled={loading}
-                    className="px-8 py-3 bg-indigo-600 text-white rounded-xl font-medium hover:bg-indigo-700 transition-colors disabled:opacity-50 flex items-center gap-2 mx-auto"
+                    className="px-10 py-4 bg-indigo-600 text-white rounded-xl font-semibold hover:bg-indigo-700 transition-all disabled:opacity-50 flex items-center gap-2 mx-auto shadow-lg hover:shadow-xl"
                   >
                     {loading ? (
                       <>
