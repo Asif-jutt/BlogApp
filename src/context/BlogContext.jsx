@@ -155,6 +155,22 @@ export const BlogProvider = ({ children }) => {
     }
   };
 
+  const fetchUserBlogs = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const response = await blogAPI.getMyBlogs();
+      setBlogs(response.data.blogs || []);
+      return response.data.blogs;
+    } catch (err) {
+      setError(err.response?.data?.message || 'Failed to fetch your blogs');
+      setBlogs([]);
+      return [];
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const fetchCategories = async () => {
     try {
       const response = await blogAPI.getCategories();
@@ -180,6 +196,7 @@ export const BlogProvider = ({ children }) => {
     filters,
     fetchBlogs,
     fetchBlogById,
+    fetchUserBlogs,
     createBlog,
     updateBlog,
     deleteBlog,
