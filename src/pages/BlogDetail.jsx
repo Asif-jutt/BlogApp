@@ -58,6 +58,7 @@ const BlogDetail = () => {
     return colors[category] || colors.Other;
   };
 
+
   if (loading || !currentBlog) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -66,36 +67,31 @@ const BlogDetail = () => {
     );
   }
 
+
   const isOwner = user?._id === currentBlog.author?._id;
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
-      <section className="relative">
-        {currentBlog.coverImage ? (
-          <div className="h-100 relative">
-            <img
-              src={currentBlog.coverImage}
-              alt={currentBlog.title}
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-linear-to-t from-black/70 to-transparent"></div>
-          </div>
-        ) : (
-          <div className="h-75 bg-linear-to-br from-indigo-600 via-purple-600 to-pink-500"></div>
-        )}
-      </section>
+      {/* Cover Image with Overlay */}
+      {currentBlog.coverImage && (
+        <div className="relative h-72 md:h-[32rem] bg-gray-200">
+          <img
+            src={currentBlog.coverImage}
+            alt={currentBlog.title}
+            className="w-full h-full object-cover object-center"
+          />
+          {/* Blurred Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent backdrop-blur-sm" />
+        </div>
+      )}
 
-      {/* Content */}
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 -mt-32 relative z-10">
-        <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
+      <article className="max-w-3xl mx-auto px-4 sm:px-8 py-0 -mt-32 relative z-10">
+        {/* Blog Card with shadow and border */}
+        <div className="bg-white/90 rounded-3xl shadow-2xl border border-gray-100 overflow-hidden mb-10 backdrop-blur-xl">
           <div className="p-8 md:p-12">
             {/* Category & Actions */}
             <div className="flex items-center justify-between mb-6">
-              <span className={`px-4 py-1.5 rounded-full text-sm font-semibold ${getCategoryColor(currentBlog.category)}`}>
-                {currentBlog.category}
-              </span>
-              
+              <span className={`px-3 py-1 bg-indigo-50 text-indigo-600 rounded-full text-sm font-bold`}>{currentBlog.category}</span>
               {isOwner && (
                 <div className="flex items-center gap-2">
                   <Link
@@ -126,37 +122,44 @@ const BlogDetail = () => {
             </h1>
 
             {/* Author Info */}
-            <div className="flex items-center justify-between pb-8 border-b border-gray-100">
-              <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-full bg-linear-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-white text-xl font-semibold">
+            <div className="flex items-center gap-6 py-6 border-t border-b border-gray-100 mb-8">
+              <div className="w-16 h-16 rounded-full bg-white ring-4 ring-indigo-100 flex items-center justify-center shadow-md">
+                <div className="w-14 h-14 rounded-full bg-linear-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-white text-2xl font-bold">
                   {currentBlog.author?.username?.charAt(0).toUpperCase()}
                 </div>
-                <div>
-                  <p className="font-semibold text-gray-900">{currentBlog.author?.username}</p>
-                  <p className="text-sm text-gray-500">
-                    {formatDate(currentBlog.createdAt)} · {currentBlog.views} views
-                  </p>
-                </div>
               </div>
-
+              <div className="flex-1 min-w-0">
+                <p className="font-semibold text-gray-900 text-lg truncate">{currentBlog.author?.username}</p>
+                <p className="text-sm text-gray-500 mt-1">{formatDate(currentBlog.createdAt)} &middot; {currentBlog.views} views</p>
+              </div>
               {/* Like Button */}
               <button
                 onClick={handleLike}
-                className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium transition-all ${
+                className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium transition-all shadow-sm ${
                   currentBlog.isLiked
-                    ? 'bg-red-100 text-red-600'
+                    ? 'bg-red-50 text-red-600'
                     : 'bg-gray-100 text-gray-600 hover:bg-red-50 hover:text-red-600'
                 }`}
               >
-                <svg className={`w-5 h-5 ${currentBlog.isLiked ? 'fill-current' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                <svg
+                  className="w-5 h-5"
+                  fill={currentBlog.isLiked ? 'currentColor' : 'none'}
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                  />
                 </svg>
-                <span>{currentBlog.likeCount || 0}</span>
+                <span className="font-medium">{currentBlog.likeCount || 0}</span>
               </button>
             </div>
 
             {/* Content */}
-            <div className="py-8 prose prose-lg max-w-none">
+            <div className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-indigo-600 prose-code:bg-gray-100 prose-code:px-2 prose-code:py-1 prose-code:rounded mb-10">
               <div className="text-gray-700 leading-relaxed whitespace-pre-wrap">
                 {currentBlog.content}
               </div>
@@ -175,10 +178,12 @@ const BlogDetail = () => {
                 ))}
               </div>
             )}
-
-            {/* Comments Section */}
-            <CommentSection blogId={id} />
           </div>
+        </div>
+
+        {/* Comments Section */}
+        <div className="bg-white/90 rounded-2xl shadow-lg p-8">
+          <CommentSection blogId={id} />
         </div>
       </article>
 

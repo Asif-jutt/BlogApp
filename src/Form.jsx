@@ -68,53 +68,51 @@ const RegistrationForm = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-indigo-500 via-purple-500 to-pink-500 p-4">
-      <div className="w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 p-4">
+      <div className="w-full max-w-lg">
         {/* Card Container */}
-        <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl overflow-hidden">
+        <div className="bg-white/80 backdrop-blur-2xl rounded-3xl shadow-[0_8px_32px_0_rgba(31,38,135,0.37)] border border-white/30 overflow-hidden transition-all duration-300">
           {/* Header Section */}
-          <div className="bg-linear-to-r from-indigo-600 to-purple-600 px-8 py-6 text-center">
-            <div className="w-16 h-16 bg-white/20 rounded-full mx-auto mb-4 flex items-center justify-center">
+          <div className="bg-gradient-to-r from-indigo-700 via-purple-600 to-pink-500 px-10 py-8 text-center shadow-md">
+            <div className="w-16 h-16 bg-white/30 rounded-full mx-auto mb-4 flex items-center justify-center shadow-lg">
               <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
             </div>
-            <h2 className="text-2xl font-bold text-white">Create Account</h2>
-            <p className="text-indigo-100 mt-1 text-sm">Join us and start your journey</p>
+            <h2 className="text-3xl font-extrabold text-white tracking-tight drop-shadow-lg">Create Account</h2>
+            <p className="text-indigo-100 mt-2 text-base font-medium">Join us and start your journey</p>
           </div>
 
           {/* Form Section */}
-          <form onSubmit={handleSubmit} className="px-8 py-6 space-y-5">
+          <form onSubmit={handleSubmit} className="px-10 py-8 space-y-6">
             {/* Message Display */}
             {message.text && (
-              <div className={`p-4 rounded-xl text-sm font-medium ${
+              <div className={`p-4 rounded-xl text-sm font-semibold shadow-md flex items-center gap-2 ${
                 message.type === 'success' 
-                  ? 'bg-green-50 text-green-700 border border-green-200' 
-                  : 'bg-red-50 text-red-700 border border-red-200'
+                  ? 'bg-green-50/80 text-green-700 border border-green-200' 
+                  : 'bg-red-50/80 text-red-700 border border-red-200'
               }`}>
-                <div className="flex items-center gap-2">
-                  {message.type === 'success' ? (
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  ) : (
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  )}
-                  {message.text}
-                </div>
+                {message.type === 'success' ? (
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                ) : (
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                )}
+                <span>{message.text}</span>
               </div>
             )}
 
             {/* Username Input */}
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">
+              <label className="block text-sm font-semibold text-gray-700 tracking-wide">
                 Username
               </label>
               <div className="relative">
-                <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 flex items-center text-gray-400">
+                  <svg className="w-5 h-5" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                   </svg>
                 </span>
@@ -124,7 +122,7 @@ const RegistrationForm = () => {
                   value={formData.username}
                   onChange={handleChange}
                   placeholder="Enter your username"
-                  className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all duration-200 bg-gray-50 hover:bg-white"
+                  className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all duration-200 bg-white/80 hover:bg-white shadow-sm"
                   required
                 />
               </div>
@@ -132,12 +130,12 @@ const RegistrationForm = () => {
 
             {/* Email Input */}
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">
+              <label className="block text-sm font-semibold text-gray-700 tracking-wide">
                 Email Address
               </label>
               <div className="relative">
-                <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 flex items-center text-gray-400">
+                  <svg className="w-5 h-5" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                 </span>
@@ -147,7 +145,7 @@ const RegistrationForm = () => {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="name@example.com"
-                  className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all duration-200 bg-gray-50 hover:bg-white"
+                  className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all duration-200 bg-white/80 hover:bg-white shadow-sm"
                   required
                 />
               </div>
@@ -155,12 +153,12 @@ const RegistrationForm = () => {
 
             {/* Password Input */}
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">
+              <label className="block text-sm font-semibold text-gray-700 tracking-wide">
                 Password
               </label>
               <div className="relative">
-                <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 flex items-center text-gray-400">
+                  <svg className="w-5 h-5" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                   </svg>
                 </span>
@@ -170,13 +168,15 @@ const RegistrationForm = () => {
                   value={formData.password}
                   onChange={handleChange}
                   placeholder="Create a strong password"
-                  className="w-full pl-10 pr-12 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all duration-200 bg-gray-50 hover:bg-white"
+                  className="w-full pl-12 pr-12 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all duration-200 bg-white/80 hover:bg-white shadow-sm"
                   required
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600"
+                  className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-indigo-600 transition-colors"
+                  tabIndex={-1}
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
                 >
                   {showPassword ? (
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -194,7 +194,7 @@ const RegistrationForm = () => {
 
             {/* Account Type Select */}
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">
+              <label className="block text-sm font-semibold text-gray-700 tracking-wide">
                 Account Type
               </label>
               <div className="relative">
@@ -207,7 +207,7 @@ const RegistrationForm = () => {
                   name="accountType"
                   value={formData.accountType}
                   onChange={handleChange}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all duration-200 bg-gray-50 hover:bg-white appearance-none cursor-pointer"
+                  className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all duration-200 bg-white/80 hover:bg-white appearance-none cursor-pointer shadow-sm"
                 >
                   <option value="personal">👤 Personal Account</option>
                   <option value="business">🏢 Business Account</option>
@@ -231,7 +231,7 @@ const RegistrationForm = () => {
                 className="w-5 h-5 mt-0.5 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 cursor-pointer"
                 required
               />
-              <label htmlFor="agree" className="text-sm text-gray-600 cursor-pointer leading-tight">
+              <label htmlFor="agree" className="text-sm text-gray-600 cursor-pointer leading-tight select-none">
                 I agree to the{' '}
                 <a href="#" className="text-indigo-600 hover:text-indigo-800 font-medium hover:underline">
                   Terms of Service
@@ -247,7 +247,7 @@ const RegistrationForm = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-linear-to-r from-indigo-600 to-purple-600 text-white py-3.5 px-4 rounded-xl font-semibold hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-xl mt-6 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2"
+              className="w-full bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 text-white py-3.5 px-4 rounded-xl font-bold hover:from-indigo-700 hover:to-pink-600 transition-all duration-300 transform hover:scale-[1.03] active:scale-[0.98] shadow-lg hover:shadow-2xl mt-6 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2 text-lg tracking-wide"
             >
               {isLoading ? (
                 <>
@@ -268,7 +268,7 @@ const RegistrationForm = () => {
                 <div className="w-full border-t border-gray-200"></div>
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-4 bg-white text-gray-500">or continue with</span>
+                <span className="px-4 bg-white/80 text-gray-500 font-medium">or continue with</span>
               </div>
             </div>
 
@@ -276,7 +276,7 @@ const RegistrationForm = () => {
             <div className="grid grid-cols-2 gap-3">
               <button
                 type="button"
-                className="flex items-center justify-center gap-2 px-4 py-2.5 border border-gray-200 rounded-xl hover:bg-gray-50 transition-all duration-200"
+                className="flex items-center justify-center gap-2 px-4 py-2.5 border border-gray-200 rounded-xl hover:bg-gray-100/80 transition-all duration-200 shadow-sm"
               >
                 <svg className="w-5 h-5" viewBox="0 0 24 24">
                   <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -288,7 +288,7 @@ const RegistrationForm = () => {
               </button>
               <button
                 type="button"
-                className="flex items-center justify-center gap-2 px-4 py-2.5 border border-gray-200 rounded-xl hover:bg-gray-50 transition-all duration-200"
+                className="flex items-center justify-center gap-2 px-4 py-2.5 border border-gray-200 rounded-xl hover:bg-gray-100/80 transition-all duration-200 shadow-sm"
               >
                 <svg className="w-5 h-5" fill="#1877F2" viewBox="0 0 24 24">
                   <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
@@ -300,7 +300,7 @@ const RegistrationForm = () => {
             {/* Sign In Link */}
             <p className="text-center text-sm text-gray-600 mt-6">
               Already have an account?{' '}
-              <a href="#" className="text-indigo-600 hover:text-indigo-800 font-semibold hover:underline">
+              <a href="#" className="text-indigo-600 hover:text-pink-600 font-semibold hover:underline transition-colors">
                 Sign in
               </a>
             </p>
