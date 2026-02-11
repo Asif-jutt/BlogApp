@@ -152,20 +152,15 @@ const Register = () => {
 
             <form onSubmit={handleSubmit} className="space-y-5">
               <div className="space-y-2">
-                <label className="block text-sm font-semibold text-gray-700">Username</label>
+                <label className="block text-sm font-semibold text-gray-700 mb-1">Username</label>
                 <div className="relative group">
-                  <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 flex items-center text-gray-400 group-focus-within:text-indigo-500 transition-colors">
-                    <svg className="w-5 h-5" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
-                  </span>
                   <input
                     type="text"
                     name="username"
                     value={formData.username}
                     onChange={handleChange}
                     placeholder="Choose a unique username"
-                    className="w-full pl-12 pr-4 py-4 bg-gray-50 border-2 border-gray-100 rounded-2xl focus:ring-0 focus:border-indigo-500 focus:bg-white outline-none transition-all text-gray-900 placeholder:text-gray-400"
+                    className="w-full px-4 py-3.5 bg-gray-50 border-2 border-gray-100 rounded-2xl focus:ring-0 focus:border-indigo-500 focus:bg-white outline-none transition-all text-gray-900 placeholder:text-gray-400"
                     required
                     minLength={3}
                   />
@@ -173,47 +168,37 @@ const Register = () => {
               </div>
 
               <div className="space-y-2">
-                <label className="block text-sm font-semibold text-gray-700">Email</label>
+                <label className="block text-sm font-semibold text-gray-700 mb-1">Email</label>
                 <div className="relative group">
-                  <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 flex items-center text-gray-400 group-focus-within:text-indigo-500 transition-colors">
-                    <svg className="w-5 h-5" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                  </span>
                   <input
                     type="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="you@example.com"
-                    className="w-full pl-12 pr-4 py-4 bg-gray-50 border-2 border-gray-100 rounded-2xl focus:ring-0 focus:border-indigo-500 focus:bg-white outline-none transition-all text-gray-900 placeholder:text-gray-400"
+                    className="w-full px-4 py-3.5 bg-gray-50 border-2 border-gray-100 rounded-2xl focus:ring-0 focus:border-indigo-500 focus:bg-white outline-none transition-all text-gray-900 placeholder:text-gray-400"
                     required
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label className="block text-sm font-semibold text-gray-700">Password</label>
+                <label className="block text-sm font-semibold text-gray-700 mb-1">Password</label>
                 <div className="relative group">
-                  <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 flex items-center text-gray-400 group-focus-within:text-indigo-500 transition-colors">
-                    <svg className="w-5 h-5" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                    </svg>
-                  </span>
                   <input
                     type={showPassword ? 'text' : 'password'}
                     name="password"
                     value={formData.password}
                     onChange={handleChange}
                     placeholder="Min. 6 characters"
-                    className="w-full pl-12 pr-12 py-4 bg-gray-50 border-2 border-gray-100 rounded-2xl focus:ring-0 focus:border-indigo-500 focus:bg-white outline-none transition-all text-gray-900 placeholder:text-gray-400"
+                    className="w-full pl-4 pr-14 py-3.5 bg-gray-50 border-2 border-gray-100 rounded-2xl focus:ring-0 focus:border-indigo-500 focus:bg-white outline-none transition-all text-gray-900 placeholder:text-gray-400"
                     required
                     minLength={6}
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-indigo-600 transition-colors"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-indigo-600 transition-colors"
                   >
                     {showPassword ? (
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -230,26 +215,21 @@ const Register = () => {
               </div>
 
               <div className="space-y-2">
-                <label className="block text-sm font-semibold text-gray-700">Confirm Password</label>
+                <label className="block text-sm font-semibold text-gray-700 mb-1">Confirm Password</label>
                 <div className="relative group">
-                  <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 flex items-center">
-                    <svg className="w-5 h-5 text-gray-400" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </span>
                   <input
                     type={showConfirmPassword ? 'text' : 'password'}
                     name="confirmPassword"
                     value={formData.confirmPassword}
                     onChange={handleChange}
                     placeholder="Repeat your password"
-                    className="w-full pl-12 pr-12 py-4 bg-gray-50 border-2 border-gray-100 rounded-2xl focus:ring-0 focus:border-indigo-500 focus:bg-white outline-none transition-all text-gray-900 placeholder:text-gray-400"
+                    className="w-full pl-4 pr-14 py-3.5 bg-gray-50 border-2 border-gray-100 rounded-2xl focus:ring-0 focus:border-indigo-500 focus:bg-white outline-none transition-all text-gray-900 placeholder:text-gray-400"
                     required
                   />
                   <button
                     type="button"
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    className="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-indigo-600 transition-colors"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-indigo-600 transition-colors"
                   >
                     {showConfirmPassword ? (
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
